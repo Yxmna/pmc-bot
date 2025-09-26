@@ -1,4 +1,4 @@
-import texts from "./texts.json";
+import texts from "./texts.json" with { type: "json" };
 
 export type Vars = Record<string, string | number>;
 export type TextKey = keyof typeof texts;

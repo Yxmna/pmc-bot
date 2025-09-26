@@ -1,0 +1,42 @@
+{
+	"welcome": "Bonjour {user}, bienvenue sur PLAY-MC.FR. Clique sur le bouton ci-dessous pour définir ton pseudo Minecraft et ainsi obtenir l’accès au serveur Discord. Si tu rencontres un problème, n’hésite pas à contacter un membre du staff.",
+	"button_set_username": "Définir mon pseudo",
+
+	"modal_title": "Définir mon pseudo",
+	"modal_label_username": "Pseudo Minecraft",
+	"modal_placeholder": "Exemple: Yomna",
+
+	"success": "✅ Ok",
+
+	"error_mojang": "❌ Erreur côté Mojang. Réessaie plus tard.",
+	"error_invalid_format": "❌ Pseudo invalide, tu dois mettre ton pseudo Minecraft actuel (3 à 16 caractères: lettres, chiffres ou underscore)",
+	"error_nickname_not_found": "❌ Pseudo Minecraft non trouvé. Tu dois mettre ton pseudo Minecraft actuel.",
+	"error_missing_role": "❌ Configuration serveur incomplète. Contacte un staff.",
+	"error_cannot_nick": "❌ Impossible de changer ton pseudo. Contacte un staff.",
+	"error_cannot_role": "❌ Impossible d’attribuer le rôle. Contacte un staff.",
+	"error_generic": "❌ Une erreur est survenue. Contacte un staff.",
+
+	"log_welcome_title": "Nouveau membre",
+	"log_welcome": "✅ Accueil envoyé pour `{userTag}` ({userMention}).",
+
+	"log_invalid_submit_title": "Pseudo invalide",
+	"log_invalid_submit": "⚠️ Saisie invalide par `{userTag}` ({userMention}) : `{typed}`",
+
+	"log_mojang_error_title": "Erreur Mojang",
+	"log_mojang_error": "❌ Mojang API error pour `{userTag}` ({userMention}) : {error}",
+
+	"log_nickname_error_title": "Erreur pseudo non trouvé",
+	"log_nickname_error": "🔍 Pseudo non trouvé pour `{userTag}` ({userMention}) : `{typed}`",
+
+	"log_cannot_nick_title": "Erreur changement de pseudo",
+	"log_cannot_nick": "❌ Impossible de changer le pseudo de `{userTag}` ({userMention}) : `{oldName}` → `{newName}`\n```\n{error}\n```",
+
+	"log_cannot_role_title": "Erreur attribution rôle",
+	"log_cannot_role": "❌ Impossible d’attribuer le rôle à `{userTag}` ({userMention})\n```\n{error}\n```",
+
+	"log_generic_error_title": "Erreur inconnue",
+	"log_generic_error": "❌ Erreur inconnue pour `{userTag}` ({userMention})\n```\n{error}\n```",
+
+	"log_success_title": "Validation réussie",
+	"log_success": "✅ Succès: `{userTag}` ({userMention}) : `{oldName}` → `{newName}`"
+}

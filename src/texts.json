@@ -31,8 +31,14 @@
 	"log_cannot_nick_title": "Erreur changement de pseudo",
 	"log_cannot_nick": "❌ Impossible de changer le pseudo de `{userTag}` ({userMention}) : `{oldName}` → `{newName}`\n```\n{error}\n```",
 
+	"log_cannot_nick_manual_title": "⚠️ ACTION MANUELLE REQUISE - Pseudo",
+	"log_cannot_nick_manual": "❌ Impossible de changer automatiquement le pseudo de `{userTag}` ({userMention})\n**Pseudo Minecraft validé :** `{mcUsername}`\n**Action requise :** Un modérateur doit définir manuellement le pseudo Discord à `{mcUsername}`\n```\n{error}\n```",
+
 	"log_cannot_role_title": "Erreur attribution rôle",
-	"log_cannot_role": "❌ Impossible d’attribuer le rôle à `{userTag}` ({userMention})\n```\n{error}\n```",
+	"log_cannot_role": "❌ Impossible d'attribuer le rôle à `{userTag}` ({userMention})\n```\n{error}\n```",
+
+	"log_cannot_role_manual_title": "⚠️ ACTION MANUELLE REQUISE - Rôle",
+	"log_cannot_role_manual": "❌ Impossible d'attribuer automatiquement le rôle à `{userTag}` ({userMention})\n**Pseudo Minecraft validé :** `{mcUsername}`\n**Action requise :** Un modérateur doit attribuer manuellement le rôle `{roleName}`\n```\n{error}\n```",
 
 	"log_generic_error_title": "Erreur inconnue",
 	"log_generic_error": "❌ Erreur inconnue pour `{userTag}` ({userMention})\n```\n{error}\n```",

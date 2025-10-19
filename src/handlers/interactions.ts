@@ -21,7 +21,16 @@ export async function onInteractionCreate(
 			interaction.customId === IDS.BTN_SET_USERNAME
 		) {
 			const modal = buildUsernameModal();
-			await interaction.showModal(modal);
+			try {
+				await interaction.showModal(modal);
+			} catch (err) {
+				console.error("Failed to show modal:", err);
+				await logger(client, "error", "log_generic_error", {
+					userTag: interaction.user.tag,
+					userMention: `<@${interaction.user.id}>`,
+					error: `Failed to show modal: ${err instanceof Error ? err.message : String(err)}`,
+				});
+			}
 		}
 
 		if (
@@ -91,11 +100,12 @@ export async function onInteractionCreate(
 				await interaction.editReply({
 					content: t("error_cannot_nick"),
 				});
-				await logger(client, "error", "log_cannot_nick", {
+				await logger(client, "error", "log_cannot_nick_manual", {
 					userTag: interaction.user.tag,
 					userMention: `<@${interaction.user.id}>`,
 					oldName: currentName,
 					newName: targetName,
+					mcUsername: targetName,
 					error: String(e),
 				});
 				return;
@@ -109,9 +119,11 @@ export async function onInteractionCreate(
 				await interaction.editReply({
 					content: t("error_cannot_role"),
 				});
-				await logger(client, "error", "log_cannot_role", {
+				await logger(client, "error", "log_cannot_role_manual", {
 					userTag: interaction.user.tag,
 					userMention: `<@${interaction.user.id}>`,
+					mcUsername: targetName,
+					roleName: joueurRole.name,
 					error: String(e),
 				});
 				return;

@@ -129,6 +129,27 @@ export async function onInteractionCreate(
 			});
 		}
 	} catch (err) {
+		// Construire des informations détaillées pour le debug
+		const interactionAge = interaction.createdTimestamp
+			? Date.now() - interaction.createdTimestamp
+			: "unknown";
+		const interactionType = interaction.isButton()
+			? "Button"
+			: interaction.isModalSubmit()
+				? "ModalSubmit"
+				: interaction.type;
+		const interactionId = interaction.id;
+		const customId = interaction.isButton() || interaction.isModalSubmit()
+			? interaction.customId
+			: "N/A";
+
+		const errorDetails = {
+			message: err instanceof Error ? err.message : String(err),
+			stack: err instanceof Error ? err.stack : undefined,
+			name: err instanceof Error ? err.name : undefined,
+			code: (err as any)?.code,
+		};
+
 		try {
 			const content = t("error_generic");
 
@@ -146,10 +167,18 @@ export async function onInteractionCreate(
 				userMention: interaction?.user
 					? `<@${interaction.user.id}>`
 					: "@unknown",
-				error: String(err),
+				error: `${errorDetails.name || "Error"}: ${errorDetails.message}\nType: ${interactionType}\nCustomId: ${customId}\nInteractionId: ${interactionId}\nAge: ${interactionAge}ms\nDeferred: ${interaction.deferred}\nReplied: ${interaction.replied}\n${errorDetails.stack ? `\nStack:\n${errorDetails.stack}` : ""}`,
 			});
 		} catch {}
 
 		console.error("onInteractionCreate error:", err);
+		console.error("Interaction details:", {
+			type: interactionType,
+			customId,
+			id: interactionId,
+			age: `${interactionAge}ms`,
+			deferred: interaction.deferred,
+			replied: interaction.replied,
+		});
 	}
 }

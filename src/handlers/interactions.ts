@@ -184,7 +184,7 @@ export async function onInteractionCreate(
 				userMention: interaction?.user
 					? `<@${interaction.user.id}>`
 					: "@unknown",
-				error: `${errorDetails.name || "Error"}: ${errorDetails.message}\nType: ${interactionType}\nCustomId: ${customId}\nInteractionId: ${interactionId}\nAge: ${interactionAge}ms\nDeferred: ${interaction.deferred}\nReplied: ${interaction.replied}\n${errorDetails.stack ? `\nStack:\n${errorDetails.stack}` : ""}`,
+				error: `${errorDetails.name || "Error"}: ${errorDetails.message}\nType: ${interactionType}\nCustomId: ${customId}\nInteractionId: ${interactionId}\nAge: ${interactionAge}ms\nDeferred: ${interaction.isRepliable() ? interaction.deferred : "N/A"}\nReplied: ${interaction.isRepliable() ? interaction.replied : "N/A"}\n${errorDetails.stack ? `\nStack:\n${errorDetails.stack}` : ""}`,
 			});
 		} catch {}
 
@@ -194,8 +194,8 @@ export async function onInteractionCreate(
 			customId,
 			id: interactionId,
 			age: `${interactionAge}ms`,
-			deferred: interaction.deferred,
-			replied: interaction.replied,
+			deferred: interaction.isRepliable() ? interaction.deferred : "N/A",
+			replied: interaction.isRepliable() ? interaction.replied : "N/A",
 		});
 	}
 }

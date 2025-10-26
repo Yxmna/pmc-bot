@@ -22,7 +22,12 @@ export async function onInteractionCreate(
 		) {
 			const modal = buildUsernameModal();
 			try {
-				await interaction.showModal(modal);
+				await Promise.race([
+					interaction.showModal(modal),
+					new Promise((_, reject) =>
+						setTimeout(() => reject(new Error("Modal timeout")), 2500)
+					),
+				]);
 			} catch (err) {
 				console.error("Failed to show modal:", err);
 				await logger(client, "error", "log_generic_error", {

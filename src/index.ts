@@ -8,8 +8,22 @@ async function main() {
 		intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 	});
 
-	client.once(Events.ClientReady, () => {
+	client.once(Events.ClientReady, async () => {
 		console.log(`Logged in as ${client.user?.tag}`);
+
+		// Vérifier si une autre instance est connectée
+		const guilds = await client.guilds.fetch();
+		for (const [, guild] of guilds) {
+			const fullGuild = await guild.fetch();
+			const botMembers = fullGuild.members.cache.filter(
+				m => m.user.id === client.user?.id && m.presence?.status === "online"
+			);
+			if (botMembers.size > 1) {
+				console.error("⚠️  ATTENTION: Une autre instance du bot semble déjà connectée!");
+				console.error("   Cela peut causer des erreurs 'Unknown interaction'.");
+				console.error("   Vérifiez qu'aucun autre développeur n'a le bot lancé.");
+			}
+		}
 	});
 
 	client.on(Events.GuildMemberAdd, (member) => {

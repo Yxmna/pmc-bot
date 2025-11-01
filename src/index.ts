@@ -2,6 +2,7 @@ import { Client, Events, GatewayIntentBits } from "discord.js";
 import { CFG } from "./config.js";
 import { onInteractionCreate } from "./handlers/interactions.js";
 import { onGuildMemberAdd } from "./handlers/welcome.js";
+import { reportPermissionsOnBoot } from "./permissions.js";
 
 async function main() {
 	const client = new Client({
@@ -9,6 +10,7 @@ async function main() {
 	});
 
 	client.once(Events.ClientReady, () => {
+		reportPermissionsOnBoot(client);
 		console.log(`Logged in as ${client.user?.tag}`);
 	});
 

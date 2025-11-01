@@ -2,6 +2,7 @@ export const IDS = {
 	BTN_SET_USERNAME: "btn:set_username",
 	MODAL_SET_USERNAME: "modal:set_username",
 	INPUT_USERNAME: "input:mc_username",
+	BTN_RECHECK_PERMS: "btn:recheck_perms",
 } as const;
 
 export const COLORS = {

@@ -3,6 +3,7 @@ import { CFG } from "../config.js";
 import { IDS, MC_NAME_REGEX } from "../constants.js";
 import { logger } from "../logger.js";
 import { getProfileByName } from "../mojang.js";
+import { reportPermissionsOnBoot } from "../permissions.js";
 import { t } from "../strings.js";
 import { buildUsernameModal } from "../ui.js";
 
@@ -15,6 +16,15 @@ export async function onInteractionCreate(
 
 		const guild = interaction.guild;
 		if (!guild) return;
+
+		if (
+			interaction.isButton() &&
+			interaction.customId === IDS.BTN_RECHECK_PERMS
+		) {
+			await interaction.deferUpdate();
+			await reportPermissionsOnBoot(client);
+			return;
+		}
 
 		if (
 			interaction.isButton() &&

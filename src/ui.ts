@@ -40,3 +40,11 @@ export function buildUsernameModal(): ModalBuilder {
 
 	return modal;
 }
+
+export function buildPermsRecheckRow(): ActionRowBuilder<ButtonBuilder> {
+	const btn = new ButtonBuilder()
+		.setCustomId(IDS.BTN_RECHECK_PERMS)
+		.setLabel("Re-vérifier les permissions")
+		.setStyle(ButtonStyle.Secondary);
+	return new ActionRowBuilder<ButtonBuilder>().addComponents(btn);
+}

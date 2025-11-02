@@ -117,7 +117,9 @@ export async function onInteractionCreate(
 					await gm.roles.add(joueurRole, "Accès joueur validé");
 				}
 			} catch (e: unknown) {
-				console.log(e);
+				console.log("Error : ", e);
+				console.log("Guild Member :", gm);
+
 				await interaction.editReply({
 					content: t("error_cannot_role"),
 				});

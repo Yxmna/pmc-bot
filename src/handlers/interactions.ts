@@ -98,6 +98,7 @@ export async function onInteractionCreate(
 			try {
 				await gm.setNickname(targetName, "Validé via Mojang");
 			} catch (e: unknown) {
+				console.log(e);
 				await interaction.editReply({
 					content: t("error_cannot_nick"),
 				});
@@ -116,6 +117,7 @@ export async function onInteractionCreate(
 					await gm.roles.add(joueurRole, "Accès joueur validé");
 				}
 			} catch (e: unknown) {
+				console.log(e);
 				await interaction.editReply({
 					content: t("error_cannot_role"),
 				});
